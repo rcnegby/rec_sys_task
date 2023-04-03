@@ -17,6 +17,10 @@ class PopularRecommender():
         self.top_recommend = []
 
     def fit(self, interactions_df: pd.DataFrame):
+        '''
+        create top of max_k most popular items
+        '''
+
         self.top_recommend = interactions_df[self.item_col].value_counts().head(self.max_k).index.values
 
     def recommend(self, users: list = None, N: int = 10) -> pd.DataFrame:
@@ -48,12 +52,17 @@ class ALS(AlternatingLeastSquares):
         self.mapper = None
 
     def fit(self, train_mat):
+        '''
+        use fit from parent class
+        '''
         super().fit(train_mat)
 
     def generate_implicit_recs_mapper(self, recommend: callable, train_mat: csr_matrix, N: int) -> callable:
         '''
         function to predict for all users
+        use function recommend from parent class
         '''
+
         def _recs_mapper(user):
             user_id = self.users_mapping[user]
             recs = recommend(user_id,
@@ -67,6 +76,7 @@ class ALS(AlternatingLeastSquares):
         '''
         return DataFrame with top N items for each user in test_df
         '''
+        
         self.mapper = self.generate_implicit_recs_mapper(super().recommend, train_mat, N)
         recs = pd.DataFrame({
             user_col: test_df[user_col].unique()
