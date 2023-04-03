@@ -2,7 +2,9 @@ import argparse
 import logging
 import sys
 import pandas as pd
+
 from sklearn.model_selection import train_test_split
+
 from models import PopularRecommender, ALS
 from utils import calc_MAP, get_coo_matrix
 

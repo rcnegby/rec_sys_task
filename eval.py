@@ -2,6 +2,7 @@ import argparse
 import logging
 import sys
 import pandas as pd
+
 from models import PopularRecommender, ALS
 from utils import get_coo_matrix
 

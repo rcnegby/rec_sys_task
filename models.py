@@ -1,4 +1,5 @@
 import pandas as pd
+
 from itertools import product
 from implicit.cpu.als import AlternatingLeastSquares
 from scipy.sparse import csr_matrix
