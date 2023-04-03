@@ -1,9 +1,0 @@
-INFO:root:START validate.py
-INFO:root:start read data
-INFO:root:success read data
-INFO:root:success fit PopularRecommender
-INFO:root:success recommend PopularRecommender
-INFO:root:start fit AlternatingLeastSquares
-INFO:root:success fit AlternatingLeastSquares
-INFO:root:start recommend AlternatingLeastSquares
-INFO:root:success recommend AlternatingLeastSquares
