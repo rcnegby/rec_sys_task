@@ -12,7 +12,7 @@ if __name__ == "__main__":
     parser.add_argument('-topN', type=int, default=10)
     parser.add_argument('-interactions_path', type=str, default='data/interactions.csv')
     parser.add_argument('-user_region_path', type=str, default='data/user_region.csv')
-    parser.add_argument('-user_age_path', type=str, default='data/user_path.csv')
+    parser.add_argument('-user_age_path', type=str, default='data/user_age.csv')
     parser.add_argument('-cold_recommend_save_path', type=str, default='data/cold_users_recommend.csv')
     parser.add_argument('-recommend_save_path', type=str, default='data/users_recommend.csv')
     args = parser.parse_args()
@@ -31,7 +31,7 @@ if __name__ == "__main__":
     interactions = interactions.rename(columns={'row': 'user_id', 'col': 'item_id'}).drop(columns=['data'])
 
     # find cold users
-    user_region_users = pd.read_csv(args.user_region_path)['row']
+    user_region_users = set(pd.read_csv(args.user_region_path)['row'])
     user_age_users = set(pd.read_csv(args.user_age_path)['row'])
     interactions_users = set(interactions['user_id'])
     cold_users = list((user_age_users | user_region_users) - interactions_users)
