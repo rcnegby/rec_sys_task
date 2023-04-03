@@ -17,7 +17,7 @@ if __name__ == "__main__":
 
     # logging
     logging.basicConfig(level=logging.INFO, filename="eval.log", filemode="w")
-    logging.getLogger().addHandler(logging.StreamHandler(sys.stdout))git
+    logging.getLogger().addHandler(logging.StreamHandler(sys.stdout))
     logging.info("START validate.py")
 
     # read data
