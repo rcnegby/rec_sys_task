@@ -11,7 +11,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('-random_state', type=int, default=42)
     parser.add_argument('-topN', type=int, default=10)
-    parser.add_argument('-interactions_path', type=str, default='interactions.csv')
+    parser.add_argument('-interactions_path', type=str, default='data/interactions.csv')
     parser.add_argument('-test_size', type=float, default=0.2)
     args = parser.parse_args()
 
@@ -26,9 +26,7 @@ if __name__ == "__main__":
     if 'row' not in interactions.columns or 'col' not in interactions.columns:
         logging.error("interactions must be DataFrame with columns row (it's user_id) and col (its item_id)")
         raise KeyError
-
     interactions = interactions.rename(columns={'row': 'user_id', 'col': 'item_id'}).drop(columns=['data'])
-
     logging.info("success read data")
 
     users_inv_mapping = dict(enumerate(interactions['user_id'].unique()))
