@@ -1,10 +1,10 @@
 import numpy as np
 import pandas as pd
-from scipy.sparse import coo_matrix
+from scipy.sparse import coo_matrix, csr_matrix
 
 
 def get_coo_matrix(df: pd.DataFrame, users_mapping: dict, items_mapping: dict,
-                   user_col: str = 'user_id', item_col: str = 'item_id'):
+                   user_col: str = 'user_id', item_col: str = 'item_id') -> csr_matrix:
     '''
     transfotm pandas df to sparse matrix
     '''
@@ -19,7 +19,7 @@ def get_coo_matrix(df: pd.DataFrame, users_mapping: dict, items_mapping: dict,
     return interaction_matrix.tocsr()
 
 
-def calc_MAP(test_df: pd.DataFrame, recs: pd.DataFrame):
+def calc_MAP(test_df: pd.DataFrame, recs: pd.DataFrame) -> int:
     '''
     calculate MAP@K
     test_df should contain columns ['user_id', 'item_id']
