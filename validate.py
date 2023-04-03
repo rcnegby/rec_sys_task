@@ -31,6 +31,7 @@ if __name__ == "__main__":
     interactions = interactions.rename(columns={'row': 'user_id', 'col': 'item_id'}).drop(columns=['data'])
     logging.info("success read data")
 
+    # some auxiliary dictionaries for sparse matrix
     users_inv_mapping = dict(enumerate(interactions['user_id'].unique()))
     users_mapping = {v: k for k, v in users_inv_mapping.items()}
     items_inv_mapping = dict(enumerate(interactions['item_id'].unique()))

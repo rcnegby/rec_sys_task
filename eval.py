@@ -39,6 +39,7 @@ if __name__ == "__main__":
 
     logging.info("success read data")
 
+    # some auxiliary dictionaries for sparse matrix
     users_inv_mapping = dict(enumerate(interactions['user_id'].unique()))
     users_mapping = {v: k for k, v in users_inv_mapping.items()}
     items_inv_mapping = dict(enumerate(interactions['item_id'].unique()))
@@ -51,7 +52,7 @@ if __name__ == "__main__":
     base_rec = baseline.recommend(cold_users, args.topN)
     logging.info("success recommend PopularRecommender")
     base_rec.to_csv(args.cold_recommend_save_path, index=False)
-    logging.info("success save cold users")
+    logging.info(f"success save cold users at {args.cold_recommend_save_path}")
 
     # get recommendations by AlternatingLeastSquares
     interactions_matrix = get_coo_matrix(interactions, users_mapping, items_mapping)
@@ -63,6 +64,6 @@ if __name__ == "__main__":
     als_rec = als.recommend(interactions, interactions_matrix, args.topN)
     logging.info("success recommend AlternatingLeastSquares")
     als_rec.to_csv(args.recommend_save_path, index=False)
-    logging.info("success save users")
+    logging.info(f"success save users at {args.recommend_save_path}")
 
     logging.info("END eval.py")

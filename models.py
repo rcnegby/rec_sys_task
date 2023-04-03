@@ -76,7 +76,7 @@ class ALS(AlternatingLeastSquares):
         '''
         return DataFrame with top N items for each user in test_df
         '''
-        
+
         self.mapper = self.generate_implicit_recs_mapper(super().recommend, train_mat, N)
         recs = pd.DataFrame({
             user_col: test_df[user_col].unique()
